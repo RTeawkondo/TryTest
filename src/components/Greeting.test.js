@@ -1,15 +1,30 @@
 import { render, screen } from "@testing-library/react"
 import Greeting from "./Greeting"
+import userEvent from "@testing-library/user-event"
 
-test("render Greeting", ()=> {
-    //arrange, act, assert
+describe("Greeting component", ()=>{
+    test("render Greeting", ()=> {
+        //arrange, act, assert
+    
+        //arrange
+        render(<Greeting/>)
+    
+        //act
+    
+        //assert, get -> err, query => none, find => promise
+        const wordNeedFind = screen.getByText("henho", {exact: true})
+        expect(wordNeedFind).toBeDefined()
+    })
 
-    //arrange
-    render(<Greeting/>)
 
-    //act
+    test("Render change", () => {
+        render(<Greeting/>)
 
-    //assert, get -> err, query => none, find => promise
-    const wordNeedFind = screen.getByText("henho", {exact: true})
-    expect(wordNeedFind).toBeDefined()
+        const buttonEle = screen.getByRole("button")
+        userEvent.click(buttonEle)
+
+        const wordNeedFind = screen.getByText("Ngu", {exact: true})
+        expect(wordNeedFind).toBeDefined()
+    })
 })
+
